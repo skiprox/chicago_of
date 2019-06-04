@@ -25,10 +25,9 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::onNewMessage(string & message)
 {
-	cout << "onNewMessage, message: " << message << "\n";
-
 	vector<string> input = ofSplitString(message, ",");
-	for (int i = 0; i < input.size(); i++) {
+	serialInput.clear();
+	for (int i = 0; i < input.size() - 1; i++) {
 		serialInput.push_back(ofToInt(input[i]));
 	}
 }
@@ -57,9 +56,10 @@ void ofApp::drawBackground(){
 		} else {
 			ofSetColor(colorOn.get());
 		}
+		ofDrawRectangle(i * width/3.0, 0, width/3.0, height/3.0);
 		// Need to draw rectangles based on `i`
 		// ofDrawRectangle(0, 0, width/3.0, height/3.0);
 	}
-	ofDrawRectangle(0, 0, width/3.0, height/3.0);
-	ofDrawRectangle(width/3.0, 0, width/3.0, height/3.0);
+	// ofDrawRectangle(0, 0, width/3.0, height/3.0);
+	// ofDrawRectangle(width/3.0, 0, width/3.0, height/3.0);
 }
