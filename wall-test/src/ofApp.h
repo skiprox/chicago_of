@@ -10,17 +10,17 @@ class ofApp : public ofBaseApp{
 	public:
 		void setup();
 		void update();
+		void updateSerials();
 		void draw();
 		void drawBackground();
+		void drawAnimations();
 		void onNewMessage(string & message);
 		void keyReleased(int key);
 		void runAnimation(int animationNum);
 
 		ofxSimpleSerial	mySerial;
 		int baud = 57600;
-		ofxPanel gui;
-    	ofParameter<ofColor> colorOn;
-    	ofParameter<ofColor> colorOff;
+		ofColor colorOn = ofColor(203, 255, 181);
     	int serial1 = 0;
     	int serial2 = 0;
 
