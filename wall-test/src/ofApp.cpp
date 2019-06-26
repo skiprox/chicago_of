@@ -28,7 +28,7 @@ void ofApp::updateSerials(){
 			// Increase the threshold number,
 			touchThreshold[i]++;
 			// and once that reaches 10 we can run the animation
-			if (touchThreshold[i] >= 10) {
+			if (touchThreshold[i] >= 50) {
 				// Reset the threshold
 				touchThreshold[i] = 0;
 				// Run the animation
