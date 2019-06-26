@@ -49,24 +49,33 @@ void ofApp::drawBackground(){
 	ofDrawRectangle(0, height/3 * 2 - 5, width, 10);
 	// Set the color in case we have none
 	ofSetColor(ofColor(255, 80, 80));
-	// Draw the circles
+	// Loop through the serial inputs
 	for (int i = 0; i < serialInput.size(); i++) {
-		if (serialInput[i] == 0) {
-			ofSetColor(colorOff.get());
-		} else {
-			ofSetColor(colorOn.get());
+		// If we have something going on with the serial input...
+		if (serialInput[i] == 1) {
+			// Increase the threshold number,
+			touchThreshold[i]++;
+			// and once that reaches 10 we can run the animation
+			if (touchThreshold[i] >= 10) {
+				// Reset the threshold
+				touchThreshold[i] = 0;
+				// Run the animation
+				shouldRunAnimation[i] = true;
+			}
 		}
-		ofDrawRectangle(i * width/3.0, 0, width/3.0, height/3.0);
-		// Need to draw rectangles based on `i`
-		// ofDrawRectangle(0, 0, width/3.0, height/3.0);
 	}
 	// Run through the `shouldRunAnimation` array, and run any of the animations that we should
 	for (int i = 0; i < shouldRunAnimation.size(); i++) {
 		if (shouldRunAnimation[i]) {
+			// Increase the animation counter,
+			// which is what we're using to run the animation for
+			// a set amount of time
 			animationCounter[i]++;
+			// If we haven't hit the threshold for how long to
+			// run the animation, fucking run it
 			if (animationCounter[i] < 500) {
 				runAnimation(i + 1);
-			} else {
+			} else { // Otherwise stop running the animation
 				shouldRunAnimation[i] = false;
 				animationCounter[i] = 0;
 			}
