@@ -60,6 +60,63 @@ void ofApp::drawBackground(){
 		// Need to draw rectangles based on `i`
 		// ofDrawRectangle(0, 0, width/3.0, height/3.0);
 	}
-	// ofDrawRectangle(0, 0, width/3.0, height/3.0);
-	// ofDrawRectangle(width/3.0, 0, width/3.0, height/3.0);
+	// Run through the `shouldRunAnimation` array, and run any of the animations that we should
+	for (int i = 0; i < shouldRunAnimation.size(); i++) {
+		if (shouldRunAnimation[i]) {
+			animationCounter[i]++;
+			if (animationCounter[i] < 500) {
+				runAnimation(i + 1);
+			} else {
+				shouldRunAnimation[i] = false;
+				animationCounter[i] = 0;
+			}
+		}
+	}
+}
+
+//--------------------------------------------------------------
+void ofApp::keyReleased(int key){
+	// Keys 1 through 9 are 49 through 57
+	// so use this to determine the index of the animation we should run
+	if (key >= 49 && key <= 57) {
+		int keyIndex = key - 49;
+		shouldRunAnimation[keyIndex] = true;
+	}
+}
+
+//--------------------------------------------------------------
+void ofApp::runAnimation(int animationNum){
+	ofSetColor(colorOn.get());
+	switch(animationNum) {
+		case 1:
+			ofDrawRectangle(0, 0, width/3.0, height/3.0);
+			break;
+		case 2:
+			ofDrawRectangle(width/3.0, 0, width/3.0, height/3.0);
+			break;
+		case 3:
+			ofDrawRectangle(width/3.0 * 2, 0, width/3.0, height/3.0);
+			break;
+		case 4:
+			ofDrawRectangle(0, height/3.0, width/3.0, height/3.0);
+			break;
+		case 5:
+			ofDrawRectangle(width/3.0, height/3.0, width/3.0, height/3.0);
+			break;
+		case 6:
+			ofDrawRectangle(width/3.0 * 2, height/3.0, width/3.0, height/3.0);
+			break;
+		case 7:
+			ofDrawRectangle(0, height/3.0 * 2, width/3.0, height/3.0);
+			break;
+		case 8:
+			ofDrawRectangle(width/3.0, height/3.0 * 2, width/3.0, height/3.0);
+			break;
+		case 9:
+			ofDrawRectangle(width/3.0 * 2, height/3.0 * 2, width/3.0, height/3.0);
+			break;
+		default:
+			cout << "WHAT FUCKING KEY IS THIS?? " << animationNum << endl;
+			break;
+	}
 }

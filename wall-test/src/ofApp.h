@@ -13,6 +13,8 @@ class ofApp : public ofBaseApp{
 		void draw();
 		void drawBackground();
 		void onNewMessage(string & message);
+		void keyReleased(int key);
+		void runAnimation(int animationNum);
 
 		ofxSimpleSerial	mySerial;
 		int baud = 57600;
@@ -28,5 +30,10 @@ class ofApp : public ofBaseApp{
     	string message;
 
     	vector<int> serialInput;
+
+    	std::array<bool, 9> shouldRunAnimation = {false, false, false, false, false, false, false, false, false};
+    	std::array<int, 9> animationCounter = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+    	// bool shouldRunAnimation[9] = {false, false, false, false, false, false, false, false, false};
+    	// int animationCounter[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 		
 };
