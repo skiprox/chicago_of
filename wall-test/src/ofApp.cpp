@@ -59,11 +59,10 @@ void ofApp::drawBackground(){
 	ofBackground(0);
 	ofSetColor(255);
 	// Draw up and down lines
-	ofDrawRectangle(width/3 - 1, 0, 2, height);
-	ofDrawRectangle(width/3 * 2 - 1, 0, 2, height);
-	// Draw left to right lines
-	ofDrawRectangle(0, height/3 - 1, width, 2);
-	ofDrawRectangle(0, height/3 * 2 - 1, width, 2);
+	for (int i = 0; i < 2; i++) {
+		ofDrawRectangle(width/3.0 * (i + 1) - 1, 0, 2, height);
+		ofDrawRectangle(0, height/3.0 * (i + 1) - 1, width, 2);
+	}
 }
 
 //--------------------------------------------------------------
