@@ -17,25 +17,25 @@ class ofApp : public ofBaseApp{
 
 		void keyPressed(int key);
 		void keyReleased(int key);
-		void mouseMoved(int x, int y );
-		void mouseDragged(int x, int y, int button);
 		void mousePressed(int x, int y, int button);
 		void mouseReleased(int x, int y, int button);
-		void mouseEntered(int x, int y);
-		void mouseExited(int x, int y);
-		void windowResized(int w, int h);
-		void dragEvent(ofDragInfo dragInfo);
-		void gotMessage(ofMessage msg);
 		float elasticEaseOut(float t);
 		float bounceEaseOut(float t);
+		float backEaseOut(float t);
+		float cubicEaseOut(float t);
+		float circEaseOut(float t);
+		float expoEaseOut(float t);
+		float quadEaseOut(float t);
+		float sineEaseOut(float t);
 
 		ofxSVG heart;
-		ofxSVG arrow;
+		ofxSVG arrowSVG;
+		ofImage arrowImg;
 
 		float width;
 		float height;
 
 		float incrementer = 0.0;
-		float incrementerMax = 250.0;
+		float incrementerMax = 200.0;
 		
 };
