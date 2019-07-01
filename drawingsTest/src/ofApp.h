@@ -19,23 +19,12 @@ class ofApp : public ofBaseApp{
 		void keyReleased(int key);
 		void mousePressed(int x, int y, int button);
 		void mouseReleased(int x, int y, int button);
-		float elasticEaseOut(float t);
-		float bounceEaseOut(float t);
-		float backEaseOut(float t);
-		float cubicEaseOut(float t);
-		float circEaseOut(float t);
-		float expoEaseOut(float t);
-		float quadEaseOut(float t);
-		float sineEaseOut(float t);
-
-		ofxSVG heart;
-		ofxSVG arrowSVG;
-		ofImage arrowImg;
 
 		float width;
 		float height;
 
-		float incrementer = 0.0;
-		float incrementerMax = 200.0;
+		ofxVectorGraphics output;
+
+		vector <ofVec2f> pts;
 		
 };
