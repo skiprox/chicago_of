@@ -23,8 +23,15 @@ class ofApp : public ofBaseApp{
 		float width;
 		float height;
 
+		int incrementer = 0;
+		int duration = 200;
+
+		ofPolyline line;
+
 		ofxVectorGraphics output;
 
-		vector <ofVec2f> pts;
+		vector <glm::vec2> pts;
+
+		glm::vec2 pointToChase;
 		
 };
