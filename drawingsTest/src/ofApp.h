@@ -26,9 +26,7 @@ class ofApp : public ofBaseApp{
 		int incrementer = 0;
 		int duration = 200;
 
-		ofPolyline line;
-
-		ofxVectorGraphics output;
+		ofPath path;
 
 		vector <glm::vec2> pts;
 
