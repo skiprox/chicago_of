@@ -7,14 +7,14 @@ void ofApp::setup(){
 	width = ofGetWidth();
 	height = ofGetHeight();
 	// 0
-	pts1.push_back(glm::vec2(50, height/2 - 50));
-	pts2.push_back(glm::vec2(50, height/2 + 50));
+	pts1.push_back(glm::vec2(50, height/1.2 - 50));
+	pts2.push_back(glm::vec2(50, height/1.2 + 50));
 	// 1
-	pts1.push_back(glm::vec2(width - 50, height/2 + 25));
-	pts2.push_back(glm::vec2(width - 50, height/2 - 25));
+	pts1.push_back(glm::vec2(width - 50, height/1.2 + 25));
+	pts2.push_back(glm::vec2(width - 50, height/1.2 - 25));
 	// 2
-	pts1.push_back(glm::vec2(width - 100, height/2 - 25));
-	pts2.push_back(glm::vec2(width - 50, height/2 - 25));
+	pts1.push_back(glm::vec2(width - 100, height/1.2 - 25));
+	pts2.push_back(glm::vec2(width - 50, height/1.2 - 25));
 	// 3
 	pts1.push_back(glm::vec2(width - 60, 50));
 	pts2.push_back(glm::vec2(width - 90, 50));
@@ -25,11 +25,17 @@ void ofApp::setup(){
 	pts1.push_back(glm::vec2(120, 75));
 	pts2.push_back(glm::vec2(120, 55));
 	// 6
-	pts1.push_back(glm::vec2(120, 55));
-	pts2.push_back(glm::vec2(120, 75));
+	pts1.push_back(glm::vec2(120, 75));
+	pts2.push_back(glm::vec2(140, 75));
 	// 7
-	pts1.push_back(glm::vec2(120, 55));
-	pts2.push_back(glm::vec2(120, 75));
+	pts1.push_back(glm::vec2(136, 400));
+	pts2.push_back(glm::vec2(124, 400));
+	// 8
+	pts1.push_back(glm::vec2(136, 388));
+	pts2.push_back(glm::vec2(136, 400));
+	// 9
+	pts1.push_back(glm::vec2(220, 398));
+	pts2.push_back(glm::vec2(220, 390));
 }
 
 //--------------------------------------------------------------
@@ -53,7 +59,7 @@ void ofApp::draw(){
 //--------------------------------------------------------------
 void ofApp::drawPointer(vector<glm::vec2> pts1, vector<glm::vec2> pts2, bool shouldHaveArrow, int incrementer){
 	path.clear();
-	path.setFillColor(ofColor(255, 40, 60));
+	path.setFillColor(ofColor(200, 8, 16));
 	path.setFilled(true);
 	// Draw the first part of the line
 	if (incrementer <= 200) {
@@ -73,7 +79,7 @@ void ofApp::drawPointer(vector<glm::vec2> pts1, vector<glm::vec2> pts2, bool sho
 		path.draw();
 		path.moveTo(pts1[2]);
 		path.lineTo(pts2[2]);
-		float easedIncrement = quadEaseOut((incrementer - 300)/100.0);
+		float easedIncrement = quadEaseOut((incrementer - 200)/100.0);
 		path.lineTo(ofLerp(pts2[2].x, pts1[3].x, easedIncrement), ofLerp(pts2[2].y, pts1[3].y, easedIncrement));
 		path.lineTo(ofLerp(pts1[2].x, pts2[3].x, easedIncrement), ofLerp(pts1[2].y, pts2[3].y, easedIncrement));
 		path.close();
@@ -93,7 +99,7 @@ void ofApp::drawPointer(vector<glm::vec2> pts1, vector<glm::vec2> pts2, bool sho
 		path.draw();
 		path.moveTo(pts1[4]);
 		path.lineTo(pts2[4]);
-		float easedIncrement = quadEaseOut((incrementer - 400)/100.0);
+		float easedIncrement = quadEaseOut((incrementer - 300)/100.0);
 		path.lineTo(ofLerp(pts2[4].x, pts1[5].x, easedIncrement), ofLerp(pts2[4].y, pts1[5].y, easedIncrement));
 		path.lineTo(ofLerp(pts1[4].x, pts2[5].x, easedIncrement), ofLerp(pts1[4].y, pts2[5].y, easedIncrement));
 		path.close();
@@ -119,9 +125,41 @@ void ofApp::drawPointer(vector<glm::vec2> pts1, vector<glm::vec2> pts2, bool sho
 		path.draw();
 		path.moveTo(pts1[6]);
 		path.lineTo(pts2[6]);
-		float easedIncrement = quadEaseOut((incrementer - 450)/100.0);
+		float easedIncrement = quadEaseOut((incrementer - 400)/50.0);
 		path.lineTo(ofLerp(pts2[6].x, pts1[7].x, easedIncrement), ofLerp(pts2[6].y, pts1[7].y, easedIncrement));
 		path.lineTo(ofLerp(pts1[6].x, pts2[7].x, easedIncrement), ofLerp(pts1[6].y, pts2[7].y, easedIncrement));
+		path.close();
+		path.draw();
+	} else if (incrementer <= 475) {
+		path.moveTo(pts1[0]);
+		path.lineTo(pts2[0]);
+		path.lineTo(pts1[1]);
+		path.lineTo(pts2[1]);
+		path.close();
+		path.draw();
+		path.moveTo(pts1[2]);
+		path.lineTo(pts2[2]);
+		path.lineTo(pts1[3]);
+		path.lineTo(pts2[3]);
+		path.close();
+		path.draw();
+		path.moveTo(pts1[4]);
+		path.lineTo(pts2[4]);
+		path.lineTo(pts1[5]);
+		path.lineTo(pts2[5]);
+		path.close();
+		path.draw();
+		path.moveTo(pts1[6]);
+		path.lineTo(pts2[6]);
+		path.lineTo(pts1[7]);
+		path.lineTo(pts2[7]);
+		path.close();
+		path.draw();
+		path.moveTo(pts1[8]);
+		path.lineTo(pts2[8]);
+		float easedIncrement = quadEaseOut((incrementer - 450)/25.0);
+		path.lineTo(ofLerp(pts2[8].x, pts1[9].x, easedIncrement), ofLerp(pts2[8].y, pts1[9].y, easedIncrement));
+		path.lineTo(ofLerp(pts1[8].x, pts2[9].x, easedIncrement), ofLerp(pts1[8].y, pts2[9].y, easedIncrement));
 		path.close();
 		path.draw();
 	} else {
@@ -149,10 +187,18 @@ void ofApp::drawPointer(vector<glm::vec2> pts1, vector<glm::vec2> pts2, bool sho
 		path.lineTo(pts2[7]);
 		path.close();
 		path.draw();
+		path.moveTo(pts1[8]);
+		path.lineTo(pts2[8]);
+		path.lineTo(pts1[9]);
+		path.lineTo(pts2[9]);
+		path.close();
+		path.draw();
 		if (shouldHaveArrow) {
-			path.moveTo(width - 120, 50);
-			path.lineTo(width - 75, 20);
-			path.lineTo(width - 30, 50);
+			pts1.push_back(glm::vec2(220, 398));
+			pts2.push_back(glm::vec2(220, 390));
+			path.moveTo(220, 382);
+			path.lineTo(236, 394);
+			path.lineTo(220, 406);
 			path.close();
 			path.draw();
 		}
