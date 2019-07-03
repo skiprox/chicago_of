@@ -23,6 +23,7 @@ class ofApp : public ofBaseApp{
 		void drawPointer(vector<glm::vec2> pts1, vector<glm::vec2> pts2, bool shouldHaveArrow, int incrementer);
 
 		float quadEaseOut(float t);
+		float bounceEaseOut(float t);
 
 		float width;
 		float height;
@@ -34,5 +35,7 @@ class ofApp : public ofBaseApp{
 
 		vector<glm::vec2> pts1;
 		vector<glm::vec2> pts2;
+
+		ofImage building;
 		
 };
