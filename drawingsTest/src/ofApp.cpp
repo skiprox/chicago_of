@@ -6,6 +6,12 @@ void ofApp::setup(){
 	ofSetCircleResolution(100);
 	width = ofGetWidth();
 	height = ofGetHeight();
+	// WHAT IS A MORE EFFECTIVE WAY OF DOING THIS???
+	// pts.push_back(glm::vec4(50, height/2 - 50, 50, height/2 + 50));
+	array<glm::vec2, 4> newPoints1 = {glm::vec2(50, height/2 - 50), glm::vec2(50, height/2 + 50), glm::vec2(width - 50, height/2 + 25), glm::vec2(width - 50, height/2 - 25)};
+	pts.push_back(newPoints1);
+	array<glm::vec2, 4> newPoints2 = {glm::vec2(width - 100, height/2 - 25), glm::vec2(width - 50, height/2 - 25), glm::vec2(width - 60, 50), glm::vec2(width - 90, 50)};
+	pts.push_back(newPoints2);
 	pts1.push_back(glm::vec2(50, height/2 - 50));
 	pts2.push_back(glm::vec2(50, height/2 + 50));
 	pts1.push_back(glm::vec2(width - 50, height/2 + 25));
@@ -41,38 +47,38 @@ void ofApp::drawPointer(vector<glm::vec2> pts1, vector<glm::vec2> pts2, bool sho
 	path.setFilled(true);
 	// Draw the first part of the line
 	if (incrementer <= 200) {
-		path.moveTo(pts1[0]);
-		path.lineTo(pts2[0]);
+		path.moveTo(pts[0][0]);
+		path.lineTo(pts[0][1]);
 		float easedIncrement = quadEaseOut(incrementer/200.0);
-		path.lineTo(ofLerp(pts2[0].x, pts1[1].x, easedIncrement), ofLerp(pts2[0].y, pts1[1].y, easedIncrement));
-		path.lineTo(ofLerp(pts1[0].x, pts2[1].x, easedIncrement), ofLerp(pts1[0].y, pts2[1].y, easedIncrement));
+		path.lineTo(ofLerp(pts[0][1].x, pts[0][2].x, easedIncrement), ofLerp(pts[0][1].y, pts[0][2].y, easedIncrement));
+		path.lineTo(ofLerp(pts[0][0].x, pts[0][3].x, easedIncrement), ofLerp(pts[0][0].y, pts[0][3].y, easedIncrement));
 		path.close();
 		path.draw();
 	} else if (incrementer <= 300) {
-		path.moveTo(pts1[0]);
-		path.lineTo(pts2[0]);
-		path.lineTo(pts1[1]);
-		path.lineTo(pts2[1]);
+		path.moveTo(pts[0][0]);
+		path.lineTo(pts[0][1]);
+		path.lineTo(pts[0][2]);
+		path.lineTo(pts[0][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[2]);
-		path.lineTo(pts2[2]);
+		path.moveTo(pts[1][0]);
+		path.lineTo(pts[1][1]);
 		float easedIncrement = quadEaseOut((incrementer - 200)/100.0);
-		path.lineTo(ofLerp(pts2[2].x, pts1[3].x, easedIncrement), ofLerp(pts2[2].y, pts1[3].y, easedIncrement));
-		path.lineTo(ofLerp(pts1[2].x, pts2[3].x, easedIncrement), ofLerp(pts1[2].y, pts2[3].y, easedIncrement));
+		path.lineTo(ofLerp(pts[1][1].x, pts[1][2].x, easedIncrement), ofLerp(pts[1][1].y, pts[1][2].y, easedIncrement));
+		path.lineTo(ofLerp(pts[1][0].x, pts[1][3].x, easedIncrement), ofLerp(pts[1][0].y, pts[1][3].y, easedIncrement));
 		path.close();
 		path.draw();
 	} else {
-		path.moveTo(pts1[0]);
-		path.lineTo(pts2[0]);
-		path.lineTo(pts1[1]);
-		path.lineTo(pts2[1]);
+		path.moveTo(pts[0][0]);
+		path.lineTo(pts[0][1]);
+		path.lineTo(pts[0][2]);
+		path.lineTo(pts[0][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[2]);
-		path.lineTo(pts2[2]);
-		path.lineTo(pts1[3]);
-		path.lineTo(pts2[3]);
+		path.moveTo(pts[1][0]);
+		path.lineTo(pts[1][1]);
+		path.lineTo(pts[1][2]);
+		path.lineTo(pts[1][3]);
 		path.close();
 		path.draw();
 		if (shouldHaveArrow) {

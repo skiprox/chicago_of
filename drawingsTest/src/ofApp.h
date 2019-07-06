@@ -34,5 +34,7 @@ class ofApp : public ofBaseApp{
 
 		vector<glm::vec2> pts1;
 		vector<glm::vec2> pts2;
+
+		vector<std::array<glm::vec2, 4>> pts;
 		
 };
