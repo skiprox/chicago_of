@@ -12,14 +12,6 @@ void ofApp::setup(){
 	pts.push_back(newPoints1);
 	array<glm::vec2, 4> newPoints2 = {glm::vec2(width - 100, height/2 - 25), glm::vec2(width - 50, height/2 - 25), glm::vec2(width - 60, 50), glm::vec2(width - 90, 50)};
 	pts.push_back(newPoints2);
-	pts1.push_back(glm::vec2(50, height/2 - 50));
-	pts2.push_back(glm::vec2(50, height/2 + 50));
-	pts1.push_back(glm::vec2(width - 50, height/2 + 25));
-	pts2.push_back(glm::vec2(width - 50, height/2 - 25));
-	pts1.push_back(glm::vec2(width - 100, height/2 - 25));
-	pts2.push_back(glm::vec2(width - 50, height/2 - 25));
-	pts1.push_back(glm::vec2(width - 60, 50));
-	pts2.push_back(glm::vec2(width - 90, 50));
 }
 
 //--------------------------------------------------------------
@@ -36,12 +28,12 @@ void ofApp::draw(){
 	// 4) whether to include an arrow at the end
 	// 5) incrementer
 	// Draw the pointer
-	drawPointer(pts1, pts2, false, incrementer);
+	drawPointer(pts, false, incrementer);
 	incrementer++;
 }
 
 //--------------------------------------------------------------
-void ofApp::drawPointer(vector<glm::vec2> pts1, vector<glm::vec2> pts2, bool shouldHaveArrow, int incrementer){
+void ofApp::drawPointer(vector<std::array<glm::vec2, 4>> pts, bool shouldHaveArrow, int incrementer){
 	path.clear();
 	path.setFillColor(ofColor(255, 40, 60));
 	path.setFilled(true);

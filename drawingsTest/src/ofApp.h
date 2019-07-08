@@ -20,7 +20,7 @@ class ofApp : public ofBaseApp{
 		void mousePressed(int x, int y, int button);
 		void mouseReleased(int x, int y, int button);
 
-		void drawPointer(vector<glm::vec2> pts1, vector<glm::vec2> pts2, bool shouldHaveArrow, int incrementer);
+		void drawPointer(vector<std::array<glm::vec2, 4>> pts, bool shouldHaveArrow, int incrementer);
 
 		float quadEaseOut(float t);
 
@@ -31,9 +31,6 @@ class ofApp : public ofBaseApp{
 		int duration = 200;
 
 		ofPath path;
-
-		vector<glm::vec2> pts1;
-		vector<glm::vec2> pts2;
 
 		vector<std::array<glm::vec2, 4>> pts;
 		
