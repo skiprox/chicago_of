@@ -7,36 +7,16 @@ void ofApp::setup(){
 	width = ofGetWidth();
 	height = ofGetHeight();
 	building.load("building.png");
-	// 0
-	pts1.push_back(glm::vec2(50, height/1.2 - 50));
-	pts2.push_back(glm::vec2(50, height/1.2 + 50));
-	// 1
-	pts1.push_back(glm::vec2(width - 50, height/1.2 + 25));
-	pts2.push_back(glm::vec2(width - 50, height/1.2 - 25));
-	// 2
-	pts1.push_back(glm::vec2(width - 100, height/1.2 - 25));
-	pts2.push_back(glm::vec2(width - 50, height/1.2 - 25));
-	// 3
-	pts1.push_back(glm::vec2(width - 60, 50));
-	pts2.push_back(glm::vec2(width - 90, 50));
-	// 4
-	pts1.push_back(glm::vec2(width - 90, 50));
-	pts2.push_back(glm::vec2(width - 90, 80));
-	// 5
-	pts1.push_back(glm::vec2(120, 75));
-	pts2.push_back(glm::vec2(120, 55));
-	// 6
-	pts1.push_back(glm::vec2(120, 75));
-	pts2.push_back(glm::vec2(140, 75));
-	// 7
-	pts1.push_back(glm::vec2(136, 400));
-	pts2.push_back(glm::vec2(124, 400));
-	// 8
-	pts1.push_back(glm::vec2(136, 388));
-	pts2.push_back(glm::vec2(136, 400));
-	// 9
-	pts1.push_back(glm::vec2(420, 398));
-	pts2.push_back(glm::vec2(420, 390));
+	array<glm::vec2, 4> newPoints0 = {glm::vec2(50, height/1.2 - 50), glm::vec2(50, height/1.2 + 50), glm::vec2(width - 50, height/1.2 + 25), glm::vec2(width - 50, height/1.2 - 25)};
+	pts.push_back(newPoints0);
+	array<glm::vec2, 4> newPoints1 = {glm::vec2(width - 100, height/1.2 - 25), glm::vec2(width - 50, height/1.2 - 25), glm::vec2(width - 60, 50), glm::vec2(width - 90, 50)};
+	pts.push_back(newPoints1);
+	array<glm::vec2, 4> newPoints2 = {glm::vec2(width - 90, 50), glm::vec2(width - 90, 80), glm::vec2(120, 75), glm::vec2(120, 55)};
+	pts.push_back(newPoints2);
+	array<glm::vec2, 4> newPoints3 = {glm::vec2(120, 75), glm::vec2(140, 75), glm::vec2(136, 400), glm::vec2(124, 400)};
+	pts.push_back(newPoints3);
+	array<glm::vec2, 4> newPoints4 = {glm::vec2(136, 388), glm::vec2(136, 400), glm::vec2(420, 398), glm::vec2(420, 390)};
+	pts.push_back(newPoints4);
 }
 
 //--------------------------------------------------------------
@@ -53,145 +33,145 @@ void ofApp::draw(){
 	// 4) whether to include an arrow at the end
 	// 5) incrementer
 	// Draw the pointer
-	drawPointer(pts1, pts2, true, incrementer);
+	drawPointer(pts, true, incrementer);
 	incrementer++;
 }
 
 //--------------------------------------------------------------
-void ofApp::drawPointer(vector<glm::vec2> pts1, vector<glm::vec2> pts2, bool shouldHaveArrow, int incrementer){
+void ofApp::drawPointer(vector<std::array<glm::vec2, 4>> pts, bool shouldHaveArrow, int incrementer){
 	path.clear();
 	path.setFillColor(ofColor(180, 8, 16));
 	path.setFilled(true);
 	// Draw the first part of the line
 	if (incrementer <= 100) {
-		path.moveTo(pts1[0]);
-		path.lineTo(pts2[0]);
+		path.moveTo(pts[0][0]);
+		path.lineTo(pts[0][1]);
 		float easedIncrement = quadEaseOut(incrementer/100.0);
-		path.lineTo(ofLerp(pts2[0].x, pts1[1].x, easedIncrement), ofLerp(pts2[0].y, pts1[1].y, easedIncrement));
-		path.lineTo(ofLerp(pts1[0].x, pts2[1].x, easedIncrement), ofLerp(pts1[0].y, pts2[1].y, easedIncrement));
+		path.lineTo(ofLerp(pts[0][1].x, pts[0][2].x, easedIncrement), ofLerp(pts[0][1].y, pts[0][2].y, easedIncrement));
+		path.lineTo(ofLerp(pts[0][0].x, pts[0][3].x, easedIncrement), ofLerp(pts[0][0].y, pts[0][3].y, easedIncrement));
 		path.close();
 		path.draw();
 	} else if (incrementer <= 200) {
-		path.moveTo(pts1[0]);
-		path.lineTo(pts2[0]);
-		path.lineTo(pts1[1]);
-		path.lineTo(pts2[1]);
+		path.moveTo(pts[0][0]);
+		path.lineTo(pts[0][1]);
+		path.lineTo(pts[0][2]);
+		path.lineTo(pts[0][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[2]);
-		path.lineTo(pts2[2]);
+		path.moveTo(pts[1][0]);
+		path.lineTo(pts[1][1]);
 		float easedIncrement = quadEaseOut((incrementer - 100)/100.0);
-		path.lineTo(ofLerp(pts2[2].x, pts1[3].x, easedIncrement), ofLerp(pts2[2].y, pts1[3].y, easedIncrement));
-		path.lineTo(ofLerp(pts1[2].x, pts2[3].x, easedIncrement), ofLerp(pts1[2].y, pts2[3].y, easedIncrement));
+		path.lineTo(ofLerp(pts[1][1].x, pts[1][2].x, easedIncrement), ofLerp(pts[1][1].y, pts[1][2].y, easedIncrement));
+		path.lineTo(ofLerp(pts[1][0].x, pts[1][3].x, easedIncrement), ofLerp(pts[1][0].y, pts[1][3].y, easedIncrement));
 		path.close();
 		path.draw();
 	} else if (incrementer <= 300) {
-		path.moveTo(pts1[0]);
-		path.lineTo(pts2[0]);
-		path.lineTo(pts1[1]);
-		path.lineTo(pts2[1]);
+		path.moveTo(pts[0][0]);
+		path.lineTo(pts[0][1]);
+		path.lineTo(pts[0][2]);
+		path.lineTo(pts[0][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[2]);
-		path.lineTo(pts2[2]);
-		path.lineTo(pts1[3]);
-		path.lineTo(pts2[3]);
+		path.moveTo(pts[1][0]);
+		path.lineTo(pts[1][1]);
+		path.lineTo(pts[1][2]);
+		path.lineTo(pts[1][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[4]);
-		path.lineTo(pts2[4]);
+		path.moveTo(pts[2][0]);
+		path.lineTo(pts[2][1]);
 		float easedIncrement = quadEaseOut((incrementer - 200)/100.0);
-		path.lineTo(ofLerp(pts2[4].x, pts1[5].x, easedIncrement), ofLerp(pts2[4].y, pts1[5].y, easedIncrement));
-		path.lineTo(ofLerp(pts1[4].x, pts2[5].x, easedIncrement), ofLerp(pts1[4].y, pts2[5].y, easedIncrement));
+		path.lineTo(ofLerp(pts[2][1].x, pts[2][2].x, easedIncrement), ofLerp(pts[2][1].y, pts[2][2].y, easedIncrement));
+		path.lineTo(ofLerp(pts[2][0].x, pts[2][3].x, easedIncrement), ofLerp(pts[2][0].y, pts[2][3].y, easedIncrement));
 		path.close();
 		path.draw();
 	} else if (incrementer <= 350) {
-		path.moveTo(pts1[0]);
-		path.lineTo(pts2[0]);
-		path.lineTo(pts1[1]);
-		path.lineTo(pts2[1]);
+		path.moveTo(pts[0][0]);
+		path.lineTo(pts[0][1]);
+		path.lineTo(pts[0][2]);
+		path.lineTo(pts[0][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[2]);
-		path.lineTo(pts2[2]);
-		path.lineTo(pts1[3]);
-		path.lineTo(pts2[3]);
+		path.moveTo(pts[1][0]);
+		path.lineTo(pts[1][1]);
+		path.lineTo(pts[1][2]);
+		path.lineTo(pts[1][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[4]);
-		path.lineTo(pts2[4]);
-		path.lineTo(pts1[5]);
-		path.lineTo(pts2[5]);
+		path.moveTo(pts[2][0]);
+		path.lineTo(pts[2][1]);
+		path.lineTo(pts[2][2]);
+		path.lineTo(pts[2][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[6]);
-		path.lineTo(pts2[6]);
+		path.moveTo(pts[3][0]);
+		path.lineTo(pts[3][1]);
 		float easedIncrement = quadEaseOut((incrementer - 300)/50.0);
-		path.lineTo(ofLerp(pts2[6].x, pts1[7].x, easedIncrement), ofLerp(pts2[6].y, pts1[7].y, easedIncrement));
-		path.lineTo(ofLerp(pts1[6].x, pts2[7].x, easedIncrement), ofLerp(pts1[6].y, pts2[7].y, easedIncrement));
+		path.lineTo(ofLerp(pts[3][1].x, pts[3][2].x, easedIncrement), ofLerp(pts[3][1].y, pts[3][2].y, easedIncrement));
+		path.lineTo(ofLerp(pts[3][0].x, pts[3][3].x, easedIncrement), ofLerp(pts[3][0].y, pts[3][3].y, easedIncrement));
 		path.close();
 		path.draw();
 	} else if (incrementer <= 375) {
-		path.moveTo(pts1[0]);
-		path.lineTo(pts2[0]);
-		path.lineTo(pts1[1]);
-		path.lineTo(pts2[1]);
+		path.moveTo(pts[0][0]);
+		path.lineTo(pts[0][1]);
+		path.lineTo(pts[0][2]);
+		path.lineTo(pts[0][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[2]);
-		path.lineTo(pts2[2]);
-		path.lineTo(pts1[3]);
-		path.lineTo(pts2[3]);
+		path.moveTo(pts[1][0]);
+		path.lineTo(pts[1][1]);
+		path.lineTo(pts[1][2]);
+		path.lineTo(pts[1][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[4]);
-		path.lineTo(pts2[4]);
-		path.lineTo(pts1[5]);
-		path.lineTo(pts2[5]);
+		path.moveTo(pts[2][0]);
+		path.lineTo(pts[2][1]);
+		path.lineTo(pts[2][2]);
+		path.lineTo(pts[2][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[6]);
-		path.lineTo(pts2[6]);
-		path.lineTo(pts1[7]);
-		path.lineTo(pts2[7]);
+		path.moveTo(pts[3][0]);
+		path.lineTo(pts[3][1]);
+		path.lineTo(pts[3][2]);
+		path.lineTo(pts[3][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[8]);
-		path.lineTo(pts2[8]);
+		path.moveTo(pts[4][0]);
+		path.lineTo(pts[4][1]);
 		float easedIncrement = quadEaseOut((incrementer - 350)/25.0);
-		path.lineTo(ofLerp(pts2[8].x, pts1[9].x, easedIncrement), ofLerp(pts2[8].y, pts1[9].y, easedIncrement));
-		path.lineTo(ofLerp(pts1[8].x, pts2[9].x, easedIncrement), ofLerp(pts1[8].y, pts2[9].y, easedIncrement));
+		path.lineTo(ofLerp(pts[4][1].x, pts[4][2].x, easedIncrement), ofLerp(pts[4][1].y, pts[4][2].y, easedIncrement));
+		path.lineTo(ofLerp(pts[4][0].x, pts[4][3].x, easedIncrement), ofLerp(pts[4][0].y, pts[4][3].y, easedIncrement));
 		path.close();
 		path.draw();
 	} else if (incrementer <= 425) {
-		path.moveTo(pts1[0]);
-		path.lineTo(pts2[0]);
-		path.lineTo(pts1[1]);
-		path.lineTo(pts2[1]);
+		path.moveTo(pts[0][0]);
+		path.lineTo(pts[0][1]);
+		path.lineTo(pts[0][2]);
+		path.lineTo(pts[0][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[2]);
-		path.lineTo(pts2[2]);
-		path.lineTo(pts1[3]);
-		path.lineTo(pts2[3]);
+		path.moveTo(pts[1][0]);
+		path.lineTo(pts[1][1]);
+		path.lineTo(pts[1][2]);
+		path.lineTo(pts[1][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[4]);
-		path.lineTo(pts2[4]);
-		path.lineTo(pts1[5]);
-		path.lineTo(pts2[5]);
+		path.moveTo(pts[2][0]);
+		path.lineTo(pts[2][1]);
+		path.lineTo(pts[2][2]);
+		path.lineTo(pts[2][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[6]);
-		path.lineTo(pts2[6]);
-		path.lineTo(pts1[7]);
-		path.lineTo(pts2[7]);
+		path.moveTo(pts[3][0]);
+		path.lineTo(pts[3][1]);
+		path.lineTo(pts[3][2]);
+		path.lineTo(pts[3][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[8]);
-		path.lineTo(pts2[8]);
-		path.lineTo(pts1[9]);
-		path.lineTo(pts2[9]);
+		path.moveTo(pts[4][0]);
+		path.lineTo(pts[4][1]);
+		path.lineTo(pts[4][2]);
+		path.lineTo(pts[4][3]);
 		path.close();
 		path.draw();
 		if (shouldHaveArrow) {
@@ -209,34 +189,34 @@ void ofApp::drawPointer(vector<glm::vec2> pts1, vector<glm::vec2> pts2, bool sho
 		building.draw(-110, -184);
 		ofPopMatrix();
 	} else {
-		path.moveTo(pts1[0]);
-		path.lineTo(pts2[0]);
-		path.lineTo(pts1[1]);
-		path.lineTo(pts2[1]);
+		path.moveTo(pts[0][0]);
+		path.lineTo(pts[0][1]);
+		path.lineTo(pts[0][2]);
+		path.lineTo(pts[0][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[2]);
-		path.lineTo(pts2[2]);
-		path.lineTo(pts1[3]);
-		path.lineTo(pts2[3]);
+		path.moveTo(pts[1][0]);
+		path.lineTo(pts[1][1]);
+		path.lineTo(pts[1][2]);
+		path.lineTo(pts[1][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[4]);
-		path.lineTo(pts2[4]);
-		path.lineTo(pts1[5]);
-		path.lineTo(pts2[5]);
+		path.moveTo(pts[2][0]);
+		path.lineTo(pts[2][1]);
+		path.lineTo(pts[2][2]);
+		path.lineTo(pts[2][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[6]);
-		path.lineTo(pts2[6]);
-		path.lineTo(pts1[7]);
-		path.lineTo(pts2[7]);
+		path.moveTo(pts[3][0]);
+		path.lineTo(pts[3][1]);
+		path.lineTo(pts[3][2]);
+		path.lineTo(pts[3][3]);
 		path.close();
 		path.draw();
-		path.moveTo(pts1[8]);
-		path.lineTo(pts2[8]);
-		path.lineTo(pts1[9]);
-		path.lineTo(pts2[9]);
+		path.moveTo(pts[4][0]);
+		path.lineTo(pts[4][1]);
+		path.lineTo(pts[4][2]);
+		path.lineTo(pts[4][3]);
 		path.close();
 		path.draw();
 		if (shouldHaveArrow) {
