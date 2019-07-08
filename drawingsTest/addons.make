@@ -1,4 +1,0 @@
-ofxGui
-ofxSvg
-ofxVectorGraphics
-ofxXmlSettings

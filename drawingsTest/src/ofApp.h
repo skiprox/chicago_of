@@ -1,8 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxSvg.h"
-#include "ofxVectorGraphics.h"
 
 #ifndef PI
 #define PI  3.14159265
