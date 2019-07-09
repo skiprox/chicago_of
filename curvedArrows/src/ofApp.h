@@ -15,5 +15,8 @@ class ofApp : public ofBaseApp{
 		ofPath path;
 
 		float width, height;
+
+		int incrementer = 0;
+		float incMax = 250.0;
 		
 };
