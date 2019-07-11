@@ -8,8 +8,8 @@ void ofApp::setup(){
 	height = ofGetHeight();
 	inc = 0;
 	incMax = 250;
-	pathStart = glm::vec2(100, 100);
-	pathEnd = glm::vec2(1000, 300);
+	pathStart = glm::vec2(800, 100);
+	pathEnd = glm::vec2(100, 300);
 }
 
 //--------------------------------------------------------------
@@ -23,8 +23,8 @@ void ofApp::draw(){
 	path.setStrokeColor(ofColor(255, 40, 60));
 	path.setFilled(false);
 	path.setStrokeWidth(10);
-	float distX = fabs(pathStart.x - pathEnd.x);
-	float distY = fabs(pathStart.y - pathEnd.y);
+	float distX = pathStart.x - pathEnd.x;
+	float distY = pathStart.y - pathEnd.y;
 	float segmentLenX = (distX/((float)incMax/10.0))/2.0;
 	float segmentLenY = (distY/((float)incMax/10.0))/2.0;
 	for (int i = 0; i < inc/10; i++) {
