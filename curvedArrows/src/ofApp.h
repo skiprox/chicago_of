@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "CurvedArrow.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -12,11 +13,13 @@ class ofApp : public ofBaseApp{
 		void keyReleased(int key);
 		void mouseReleased(int x, int y, int button);
 
-		ofPath path;
-
 		float width, height;
+
+		ofColor red = ofColor(240, 40, 20);
 
 		int incrementer = 0;
 		float incMax = 250.0;
+
+		CurvedArrow curvedArrow;
 		
 };
