@@ -8,8 +8,8 @@ void ofApp::setup(){
 	height = ofGetHeight();
 	inc = 0;
 	incMax = 250;
-	pathStart = glm::vec2(800, 100);
-	pathEnd = glm::vec2(100, 300);
+	pathStart = glm::vec2(200, 100);
+	pathEnd = glm::vec2(1100, 300);
 	dashedLine = DashedLine(pathStart, pathEnd, ofColor(255, 40, 60), incMax);
 }
 

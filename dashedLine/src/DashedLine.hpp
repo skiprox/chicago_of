@@ -24,5 +24,8 @@ public:
 
     int inc, incMax;
 
+    int desiredStrokeLen = 20;
+    int numSegments;
+
 	ofColor color;
 };
