@@ -57,9 +57,7 @@ void MultiLine::draw() {
 			path.lineTo(pts[i][1]);
 			float upperEq = (float)inc - ((float)incMax/((float)numSegments) * i);
 			float lowerEq = ((float)incMax/((float)numSegments) * ((float)i + 1.0)) - ((float)incMax/((float)numSegments) * i);
-			float increment = upperEq/lowerEq;
 			float easedIncrement = quadEaseOut(upperEq/lowerEq);
-			cout << "THE INCREMENT " << increment << " " << easedIncrement << endl;
 			path.lineTo(ofLerp(pts[i][1].x, pts[i][2].x, easedIncrement), ofLerp(pts[i][1].y, pts[i][2].y, easedIncrement));
 			path.lineTo(ofLerp(pts[i][0].x, pts[i][3].x, easedIncrement), ofLerp(pts[i][0].y, pts[i][3].y, easedIncrement));
 			path.close();
