@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "DashedLine.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -19,5 +20,7 @@ class ofApp : public ofBaseApp{
 		float width, height;
 
 		glm::vec2 pathStart, pathEnd;
+
+		DashedLine dashedLine;
 		
 };
