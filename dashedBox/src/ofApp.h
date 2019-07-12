@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "MultiLine.hpp"
+#include "DashedBox.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -13,11 +13,10 @@ class ofApp : public ofBaseApp{
 		void keyReleased(int key);
 		void mouseReleased(int x, int y, int button);
 
-		MultiLine multiLine;
+		DashedBox dashedBox;
 
-		int incrementer = 0;
+		int incrementer;
 
-		vector<std::array<glm::vec2, 4>> _pts;
-		array<glm::vec2, 4> newPoints1, newPoints2, newPoints3, newPoints4;
+		float width, height;
 		
 };
