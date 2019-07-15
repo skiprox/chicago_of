@@ -18,14 +18,16 @@ LineArrow::LineArrow()
 	strokeWidth = 10.0;
 	color = ofColor(240, 60, 40);
 	incMax = 250;
+	arrow = true;
     setup();
 }
 
-LineArrow::LineArrow(vector<std::array<glm::vec2, 2>> _pts, float _strokeWidth, ofColor _color, int _incMax) {
+LineArrow::LineArrow(vector<std::array<glm::vec2, 2>> _pts, float _strokeWidth, ofColor _color, int _incMax, bool _arrow) {
 	pts = _pts;
 	strokeWidth = _strokeWidth;
 	color = _color;
 	incMax = _incMax;
+	arrow = _arrow;
     setup();
 }
 
@@ -66,6 +68,10 @@ void LineArrow::draw() {
 			path.lineTo(pts[i][1]);
 			path.close();
 			path.draw();
+			// We should draw an arrow here!
+			if (arrow) {
+
+			}
 		}
 	}
 	ofPopStyle();
