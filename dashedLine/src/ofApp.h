@@ -13,14 +13,9 @@ class ofApp : public ofBaseApp{
 		void keyReleased(int key);
 		void mouseReleased(int x, int y, int button);
 
-		ofPath path;
+		int incrementer = 0;
+		int incMax = 250;
 
-		int inc, incMax;
-
-		float width, height;
-
-		glm::vec2 pathStart, pathEnd;
-
-		DashedLine dashedLine;
+		vector<DashedLine> dashedLines;
 		
 };

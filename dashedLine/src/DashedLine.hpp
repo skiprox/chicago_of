@@ -12,20 +12,26 @@ class DashedLine
 public:
 
 	DashedLine();
-    DashedLine(glm::vec2 _start, glm::vec2 _end, ofColor _color, int _incMax);
+    DashedLine(vector<std::array<glm::vec2, 2>> _pts, float _strokeWidth, ofColor _color, int _incMax, bool _arrow);
 
     void setup();
 	void update(int _inc);
 	void draw();
+	float quadEaseOut(float t);
 
 	ofPath path;
 
-    glm::vec2 start, end;
+    vector<std::array<glm::vec2, 2>> pts;
+
+    float strokeWidth;
 
     int inc, incMax;
 
+    bool arrow;
+
+    float numSegments;
+
     int desiredStrokeLen = 20;
-    int numSegments;
 
 	ofColor color;
 };
