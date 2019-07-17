@@ -69,8 +69,31 @@ void LineArrow::draw() {
 			path.close();
 			path.draw();
 			// We should draw an arrow here!
-			if (arrow) {
-
+			if (i == (numSegments - 1) && arrow) {
+				ofPushStyle();
+				ofPushMatrix();
+				ofSetColor(color);
+				ofFill();
+				ofTranslate(pts[i][1]);
+				float slope = (pts[i][1].y - pts[i][0].y)/(pts[i][1].x - pts[i][0].x);
+				float atanGuy = atan (slope);
+				float angle = atanGuy * 180 / PI;
+				// This seems to fix the issue of sometimes arrows going in wrong directions...
+				// if our line is heading towards the left we flip the arrow
+				if (pts[i][1].x > pts[i][0].x) {
+					ofRotate(angle - 90);
+				} else {
+					ofRotate(angle + 90);
+				}
+				if (strokeWidth > 8) {
+					ofDrawTriangle(glm::vec2(0 - 20, 0), glm::vec2(0, 20), glm::vec2(20, 0));
+				} else if (strokeWidth > 3) {
+					ofDrawTriangle(glm::vec2(0 - 14, 0), glm::vec2(0, 14), glm::vec2(14, 0));
+				} else {
+					ofDrawTriangle(glm::vec2(0 - 10, 0), glm::vec2(0, 10), glm::vec2(10, 0));
+				}
+				ofPopMatrix();
+				ofPopStyle();
 			}
 		}
 	}

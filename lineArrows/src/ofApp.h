@@ -15,5 +15,5 @@ class ofApp : public ofBaseApp{
 		int incrementer = 0;
 		int incMax = 250;
 
-		LineArrow lineArrow1, lineArrow2, lineArrow3;
+		vector<LineArrow> lineArrows;
 };
