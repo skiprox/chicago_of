@@ -42,24 +42,6 @@ void DashedLine::update(int _inc) {
 }
 
 void DashedLine::draw() {
-	// ofPushStyle();
-	// path.clear();
-	// path.setStrokeColor(color);
-	// path.setFilled(false);
-	// path.setStrokeWidth(2);
-	// float segBreaker = (float)incMax/(float)numSegments;
-	// float distX = start.x - end.x;
-	// float distY = start.y - end.y;
-	// float segmentLenX = (distX/((float)incMax/segBreaker))/2.0;
-	// float segmentLenY = (distY/((float)incMax/segBreaker))/2.0;
-	// for (int i = 0; i < inc/segBreaker; i++) {
-	// 	float posX = ofLerp(start.x, end.x, (float)i/((float)incMax/segBreaker));
-	// 	float posY = ofLerp(start.y, end.y, (float)i/((float)incMax/segBreaker));
-	// 	path.moveTo(posX, posY);
-	// 	path.lineTo(posX + segmentLenX, posY + segmentLenY);
-	// }
-	// path.draw();
-	// ofPopStyle();
 	ofPushStyle();
 	path.clear();
 	path.setStrokeWidth(strokeWidth);
