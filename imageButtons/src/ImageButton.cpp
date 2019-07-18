@@ -41,23 +41,28 @@ void ImageButton::draw() {
 	ofPopMatrix();
 	ofPopStyle();
 	// Fading in/out image
-	ofPushStyle();
 	ofPushMatrix();
 	ofTranslate(ofGetWidth()/2.0, (size.y/2.0) * 4.0);
+	ofPushStyle();
+	ofEnableAlphaBlending();
 	ofSetColor(255, 255, 255, ofMap(sin(inc), -1.0, 1.0, 0.0, 255.0, true));
-	ofFill();
-	ofDrawRectangle(-(size.x/2.0), -(size.y/2.0), size.x, size.y);
 	image.draw(-(size.x/2.0), -(size.y/2.0), size.x, size.y);
-	ofPopMatrix();
+	ofDisableAlphaBlending();
 	ofPopStyle();
+	ofPushStyle();
+	ofEnableAlphaBlending();
+	ofSetColor(240, 40, 20, ofMap(sin(inc), -1.0, 1.0, 255.0, 0.0, true));
+	image.draw(-(size.x/2.0), -(size.y/2.0), size.x, size.y);
+	ofDisableAlphaBlending();
+	ofPopStyle();
+	ofPopMatrix();
 	// Bouncing image with background
 	ofPushStyle();
 	ofPushMatrix();
 	ofTranslate(ofGetWidth()/2.0, (size.y/2.0) * 8.0);
 	ofPushStyle();
 	ofPushMatrix();
-	ofSetColor(0);
-	ofNoFill();
+	ofSetColor(240, 40, 20);
 	ofScale(ofMap(sin(inc), -1.0, 1.0, 1.0, 1.2, true));
 	ofTranslate(0, ofMap(sin(inc), -1.0, 1.0, 0.0, -7.5));
 	image.draw(-(size.x/2.0), -(size.y/2.0), size.x, size.y);
