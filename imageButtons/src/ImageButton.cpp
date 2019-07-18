@@ -32,10 +32,38 @@ void ImageButton::update(float _inc) {
 }
 
 void ImageButton::draw() {
+	// Bouncing image
 	ofPushStyle();
 	ofPushMatrix();
-	ofTranslate(pos.x, pos.y);
+	ofTranslate(ofGetWidth()/2.0, size.y/2.0);
 	ofScale(ofMap(sin(inc), -1.0, 1.0, 0.8, 1.0, true));
+	image.draw(-(size.x/2.0), -(size.y/2.0), size.x, size.y);
+	ofPopMatrix();
+	ofPopStyle();
+	// Fading in/out image
+	ofPushStyle();
+	ofPushMatrix();
+	ofTranslate(ofGetWidth()/2.0, (size.y/2.0) * 4.0);
+	ofSetColor(255, 255, 255, ofMap(sin(inc), -1.0, 1.0, 0.0, 255.0, true));
+	ofFill();
+	ofDrawRectangle(-(size.x/2.0), -(size.y/2.0), size.x, size.y);
+	image.draw(-(size.x/2.0), -(size.y/2.0), size.x, size.y);
+	ofPopMatrix();
+	ofPopStyle();
+	// Bouncing image with background
+	ofPushStyle();
+	ofPushMatrix();
+	ofTranslate(ofGetWidth()/2.0, (size.y/2.0) * 8.0);
+	ofPushStyle();
+	ofPushMatrix();
+	ofSetColor(0);
+	ofNoFill();
+	ofScale(ofMap(sin(inc), -1.0, 1.0, 1.0, 1.2, true));
+	ofTranslate(0, ofMap(sin(inc), -1.0, 1.0, 0.0, -7.5));
+	image.draw(-(size.x/2.0), -(size.y/2.0), size.x, size.y);
+	ofPopMatrix();
+	ofPopStyle();
+	// ofScale(ofMap(sin(inc), -1.0, 1.0, 0.8, 1.0, true));
 	image.draw(-(size.x/2.0), -(size.y/2.0), size.x, size.y);
 	ofPopMatrix();
 	ofPopStyle();
