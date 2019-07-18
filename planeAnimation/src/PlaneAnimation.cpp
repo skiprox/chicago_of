@@ -39,8 +39,10 @@ void PlaneAnimation::draw() {
 	path.close();
 	path.draw();
 	ofPushStyle();
+	ofPushMatrix();
 	float scaledInc = inc * (width/4) - 400;
 	ofTranslate(scaledInc, (200.0 * (sin(inc/1.4 + 1.0))) + height/2.0);
 	plane.draw(-250, -110, 500, 220);
+	ofPopMatrix();
 	ofPopStyle();
 }
