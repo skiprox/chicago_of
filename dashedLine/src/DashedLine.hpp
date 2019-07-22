@@ -18,6 +18,7 @@ public:
 	void update(int _inc);
 	void draw();
 	float quadEaseOut(float t);
+	float sineEaseOut(float t);
 
 	ofPath path;
 

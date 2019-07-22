@@ -61,7 +61,7 @@ void DottedLine::draw() {
 			}
 			float upperEq = (float)inc - ((float)incMax/((float)numSegments) * i);
 			float lowerEq = ((float)incMax/((float)numSegments) * ((float)i + 1.0)) - ((float)incMax/((float)numSegments) * i);
-			float easedIncrement = quadEaseOut(upperEq/lowerEq);
+			float easedIncrement = sineEaseOut(upperEq/lowerEq);
 			float totalDist = ofDist(pts[i][0].x, pts[i][0].y, pts[i][1].x, pts[i][1].y);
 			float totalNumSegments = floor(fabs(totalDist)/desiredStrokeLen);
 			float segmentsToDraw = floor(totalNumSegments * easedIncrement);
@@ -123,4 +123,9 @@ void DottedLine::draw() {
 //--------------------------------------------------------------
 float DottedLine::quadEaseOut(float t) {
 	return -1.0 *(t)*(t-2);
+}
+
+//--------------------------------------------------------------
+float DottedLine::sineEaseOut(float t) {
+	return sin(t * (PI/2));
 }

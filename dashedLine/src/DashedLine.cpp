@@ -69,7 +69,7 @@ void DashedLine::draw() {
 			path.moveTo(pts[i][0]);
 			float upperEaseEq = (float)inc - ((float)incMax/((float)numSegments) * i);
 			float lowerEaseEq = ((float)incMax/((float)numSegments) * ((float)i + 1.0)) - ((float)incMax/((float)numSegments) * i);
-			float easedIncrement = quadEaseOut(upperEaseEq/lowerEaseEq);
+			float easedIncrement = sineEaseOut(upperEaseEq/lowerEaseEq);
 			float totalDist = ofDist(pts[i][0].x, pts[i][0].y, pts[i][1].x, pts[i][1].y);
 			float totalNumSegments = floor(fabs(totalDist)/desiredStrokeLen);
 			float segmentsToDraw = floor(totalNumSegments * easedIncrement);
@@ -134,4 +134,9 @@ void DashedLine::draw() {
 //--------------------------------------------------------------
 float DashedLine::quadEaseOut(float t) {
 	return -1.0 *(t)*(t-2);
+}
+
+//--------------------------------------------------------------
+float DashedLine::sineEaseOut(float t) {
+	return sin(t * (PI/2));
 }
