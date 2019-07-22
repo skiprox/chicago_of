@@ -62,16 +62,16 @@ void DottedLine::draw() {
 			float upperEq = (float)inc - ((float)incMax/((float)numSegments) * i);
 			float lowerEq = ((float)incMax/((float)numSegments) * ((float)i + 1.0)) - ((float)incMax/((float)numSegments) * i);
 			float easedIncrement = quadEaseOut(upperEq/lowerEq);
-			glm::vec2 startPos = pts[i][0];
-			glm::vec2 endPos = glm::vec2(ofLerp(pts[i][0].x, pts[i][1].x, easedIncrement), ofLerp(pts[i][0].y, pts[i][1].y, easedIncrement));
-			float numLineSegments = floor(fabs(ofDist(startPos.x, startPos.y, endPos.x, endPos.y))/desiredStrokeLen);
-			float distX = startPos.x - endPos.x;
-			float distY = startPos.y - endPos.y;
-			int segmentLenX = (int)(distX/((float)numLineSegments)/2.0);
-			int segmentLenY = (int)(distY/((float)numLineSegments)/2.0);
-			for (int k = 0; k < numLineSegments; k++) {
-				float posX = ofLerp(startPos.x, endPos.x, (k + 1)/numLineSegments);
-				float posY = ofLerp(startPos.y, endPos.y, (k + 1)/numLineSegments);
+			float totalDist = ofDist(pts[i][0].x, pts[i][0].y, pts[i][1].x, pts[i][1].y);
+			float totalNumSegments = floor(fabs(totalDist)/desiredStrokeLen);
+			float segmentsToDraw = floor(totalNumSegments * easedIncrement);
+			float distX = pts[i][0].x - pts[i][1].x;
+			float distY = pts[i][0].y - pts[i][1].y;
+			int segmentLenX = (int)(distX/((float)totalNumSegments)/2.0);
+			int segmentLenY = (int)(distY/((float)totalNumSegments)/2.0);
+			for (int k = 0; k < segmentsToDraw; k++) {
+				float posX = ofLerp(pts[i][0].x, pts[i][1].x, (k + 1)/totalNumSegments);
+				float posY = ofLerp(pts[i][0].y, pts[i][1].y, (k + 1)/totalNumSegments);
 				ofSetColor(color);
 				ofFill();
 				ofDrawCircle(posX, posY, circleRadius);

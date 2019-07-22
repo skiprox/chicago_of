@@ -49,9 +49,9 @@ void DashedLine::draw() {
 	path.setFilled(false);
 	for (int i = 0; i < numSegments; i++) {
 		if (inc > (incMax/(numSegments) * i) && inc <= incMax/(numSegments) * (i + 1)) {
+			// Draw the lines that have already been animated
 			for (int j = 0; j < i; j++) {
 				float numLineSegments = floor(fabs(ofDist(pts[j][0].x, pts[j][0].y, pts[j][1].x, pts[j][1].y))/desiredStrokeLen);
-				float segBreaker = (float)incMax/(float)numLineSegments;
 				float distX = pts[j][0].x - pts[j][1].x;
 				float distY = pts[j][0].y - pts[j][1].y;
 				float segmentLenX = distX/((float)numLineSegments)/2.0;
@@ -65,21 +65,21 @@ void DashedLine::draw() {
 				path.close();
 				path.draw();
 			}
+			// Animate the last part of the line
 			path.moveTo(pts[i][0]);
-			float upperEq = (float)inc - ((float)incMax/((float)numSegments) * i);
-			float lowerEq = ((float)incMax/((float)numSegments) * ((float)i + 1.0)) - ((float)incMax/((float)numSegments) * i);
-			float easedIncrement = quadEaseOut(upperEq/lowerEq);
-			glm::vec2 startPos = pts[i][0];
-			glm::vec2 endPos = glm::vec2(ofLerp(pts[i][0].x, pts[i][1].x, easedIncrement), ofLerp(pts[i][0].y, pts[i][1].y, easedIncrement));
-			float numLineSegments = floor(fabs(ofDist(startPos.x, startPos.y, endPos.x, endPos.y))/desiredStrokeLen);
-			float segBreaker = (float)incMax/(float)numLineSegments;
-			float distX = startPos.x - endPos.x;
-			float distY = startPos.y - endPos.y;
-			int segmentLenX = (int)(distX/((float)numLineSegments)/2.0);
-			int segmentLenY = (int)(distY/((float)numLineSegments)/2.0);
-			for (int k = 0; k < numLineSegments; k++) {
-				float posX = ofLerp(startPos.x, endPos.x, (k + 1)/numLineSegments);
-				float posY = ofLerp(startPos.y, endPos.y, (k + 1)/numLineSegments);
+			float upperEaseEq = (float)inc - ((float)incMax/((float)numSegments) * i);
+			float lowerEaseEq = ((float)incMax/((float)numSegments) * ((float)i + 1.0)) - ((float)incMax/((float)numSegments) * i);
+			float easedIncrement = quadEaseOut(upperEaseEq/lowerEaseEq);
+			float totalDist = ofDist(pts[i][0].x, pts[i][0].y, pts[i][1].x, pts[i][1].y);
+			float totalNumSegments = floor(fabs(totalDist)/desiredStrokeLen);
+			float segmentsToDraw = floor(totalNumSegments * easedIncrement);
+			float distX = pts[i][0].x - pts[i][1].x;
+			float distY = pts[i][0].y - pts[i][1].y;
+			int segmentLenX = (int)(distX/((float)totalNumSegments)/2.0);
+			int segmentLenY = (int)(distY/((float)totalNumSegments)/2.0);
+			for (int k = 0; k < segmentsToDraw; k++) {
+				float posX = ofLerp(pts[i][0].x, pts[i][1].x, (k + 1)/totalNumSegments);
+				float posY = ofLerp(pts[i][0].y, pts[i][1].y, (k + 1)/totalNumSegments);
 				path.moveTo(posX, posY);
 				path.lineTo(posX + segmentLenX, posY + segmentLenY);
 			}
@@ -87,7 +87,6 @@ void DashedLine::draw() {
 			path.draw();
 		} else if (inc >= incMax) {
 			float numLineSegments = floor(fabs(ofDist(pts[i][0].x, pts[i][0].y, pts[i][1].x, pts[i][1].y))/desiredStrokeLen);
-			float segBreaker = (float)incMax/(float)numLineSegments;
 			float distX = pts[i][0].x - pts[i][1].x;
 			float distY = pts[i][0].y - pts[i][1].y;
 			float segmentLenX = distX/((float)numLineSegments)/2.0;
