@@ -4,6 +4,8 @@
 void ofApp::setup(){
 	ofSetLogLevel(OF_LOG_VERBOSE);
 	agua.setup(ofGetWidth(), ofGetHeight());
+	cout << ofGetWidth() << " " << ofGetHeight() << endl;
+	overlay.load("images/overlay.png");
 }
 
 //--------------------------------------------------------------
@@ -20,6 +22,10 @@ void ofApp::draw(){
 	float ranY = ofRandom(ofGetHeight());
 	agua.disturb(ranX, ranY, 10, 128);
 	agua.draw(true);
+	overlay.draw(0, 0);
+	ofSetColor(220, 40, 20);
+	ofFill();
+	ofDrawRectangle(400, 400, 200, 200);
 }
 
 //--------------------------------------------------------------

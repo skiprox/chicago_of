@@ -22,4 +22,6 @@ class ofApp : public ofBaseApp{
 		
 
 		ofxWaterRipple agua;
+
+		ofImage overlay;
 };
