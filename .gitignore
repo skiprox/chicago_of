@@ -138,6 +138,7 @@ Desktop.ini
 
 /bin/*
 !/bin/data/
+!/waterRippleVideo/bin/data
 
 # general
 
