@@ -242,6 +242,7 @@ fi
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
 						<string>../../../../openFrameworks/addons/ofxWaterRipple/src</string>
 					</array>
 					<key>CONFIGURATION_BUILD_DIR</key>
@@ -302,6 +303,7 @@ fi
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
 						<string>../../../../openFrameworks/addons/ofxWaterRipple/src</string>
 					</array>
 					<key>COMBINE_HIDPI_IMAGES</key>
@@ -499,6 +501,7 @@ fi
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
 						<string>../../../../openFrameworks/addons/ofxWaterRipple/src</string>
 					</array>
 					<key>CONFIGURATION_BUILD_DIR</key>
@@ -557,6 +560,7 @@ fi
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
 						<string>../../../../openFrameworks/addons/ofxWaterRipple/src</string>
 					</array>
 					<key>CONFIGURATION_BUILD_DIR</key>
@@ -701,6 +705,7 @@ fi
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
 						<string>../../../../openFrameworks/addons/ofxWaterRipple/src</string>
 					</array>
 					<key>COMBINE_HIDPI_IMAGES</key>
@@ -746,6 +751,7 @@ fi
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
 						<string>../../../../openFrameworks/addons/ofxWaterRipple/src</string>
 					</array>
 					<key>COMBINE_HIDPI_IMAGES</key>
