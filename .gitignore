@@ -136,9 +136,7 @@ Desktop.ini
 # ignore generated binaries
 # but not the data folder
 
-/bin/*
-!/bin/data/
-!/waterRippleVideo/bin/data
+/bin/*.app
 
 # general
 
