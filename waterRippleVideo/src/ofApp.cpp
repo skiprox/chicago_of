@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	myPlayer.load("movies/water.mov");
+	myPlayer.load("movies/water-small.mov");
 	overlay.load("images/overlay.png");
 	myPlayer.play();
 }
@@ -16,7 +16,10 @@ void ofApp::update(){
 void ofApp::draw(){
 	ofBackground(0);
 	ofSetColor(255);
-	myPlayer.draw(0, 0);
+	// ofPushMatrix();
+	// ofScale(2.0, 2.0);
+	myPlayer.draw(0, 0, ofGetWidth(), ofGetHeight());
+	// ofPopMatrix();
 	overlay.draw(0, 0);
 }
 
