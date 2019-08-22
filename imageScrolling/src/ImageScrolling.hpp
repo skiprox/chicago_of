@@ -23,4 +23,6 @@ public:
 	glm::vec2 pos, size;
 
 	int inc;
+
+	float incScaler = 5.0;
 };

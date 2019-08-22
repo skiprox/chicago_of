@@ -28,14 +28,14 @@ void ImageScrolling::setup() {
 
 void ImageScrolling::update(int _inc) {
 	inc = _inc;
-	int modAmount = 3 * int(size.y + ofGetHeight());
+	int modAmount = int(incScaler) * int(size.y + ofGetHeight());
 	inc = inc % modAmount;
 }
 
 void ImageScrolling::draw() {
 	ofPushMatrix();
 	ofPushStyle();
-	img.draw(pos.x - size.x/2.0, ofGetHeight() - inc/3.0, size.x, size.y);
+	img.draw(pos.x - size.x/2.0, ofGetHeight() - inc/incScaler, size.x, size.y);
 	ofPopStyle();
 	ofPopMatrix();
 }

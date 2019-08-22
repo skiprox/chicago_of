@@ -13,7 +13,7 @@ class ofApp : public ofBaseApp{
 		void keyReleased(int key);
 
 		int incrementer = 0;
-		int incMax = 100;
+		int incMax = 400;
 
 		ImageAnimation imgAnimation;
 		

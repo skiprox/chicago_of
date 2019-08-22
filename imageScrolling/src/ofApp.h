@@ -15,5 +15,7 @@ class ofApp : public ofBaseApp{
 		ImageScrolling unabomber;
 
 		int incrementer;
+
+		float width, height;
 		
 };
