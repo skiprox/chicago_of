@@ -17,14 +17,13 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	ofBackground(0);
-	ofSetColor(255);
 	float ranX = ofRandom(ofGetWidth());
 	float ranY = ofRandom(ofGetHeight());
 	agua.disturb(ranX, ranY, 10, 128);
 	agua.draw(true);
 	//overlay.draw(0, 0);
-	ofSetColor(220, 40, 20);
-	ofFill();
+	// ofSetColor(220, 40, 20);
+	// ofFill();
 	//ofDrawRectangle(400, 400, 200, 200);
 }
 
