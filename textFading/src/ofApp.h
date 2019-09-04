@@ -11,5 +11,8 @@ class ofApp : public ofBaseApp{
 		void draw();
 
 		void keyReleased(int key);
+
+		int incrementer;
+		TextFading textFading;
 		
 };
